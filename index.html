@@ -65,6 +65,133 @@ select{width:100%;margin-top:4px;padding:7px 9px;background:#0b141a;color:var(--
 .bar.cast{padding:2px;border:2px solid #8c7b4a;border-radius:3px;background:#0b0905}
 .bar.cast i{position:relative;background:linear-gradient(#fff5,#fff0 50%,#0003),linear-gradient(90deg,#a8650a,#ffd43b)}
 .bar.cast i::after{content:"";position:absolute;right:-9px;top:-5px;bottom:-5px;width:18px;background:radial-gradient(closest-side,#fff,#ffe88a99 45%,transparent)}
+.bar.winxp,.bar.shield,.bar.pip,.bar.bit8{--mk:repeating-linear-gradient(90deg,#000 0 8px,#0000 8px 10px)}
+.bar.shield{--mk:repeating-linear-gradient(90deg,#000 0 10px,#0000 10px 12px)}
+.bar.pip,.bar.bit8{--mk:repeating-linear-gradient(90deg,#000 0 6px,#0000 6px 8px)}
+.bar.winxp i,.bar.shield i,.bar.pip i,.bar.bit8 i{-webkit-mask-image:var(--mk);mask-image:var(--mk)}
+.bar.winxp{padding:3px;background:#fff;border:1px solid #686868;border-radius:4px;box-shadow:inset 0 0 0 1px #e4e4e4}
+.bar.winxp i{border-radius:2px;background:linear-gradient(#eaffe6,#6fdc65 25%,#2bb81f 55%,#23a018 80%,#8fe885)}
+.bar.win7{padding:1px;background:#e6e6e6;border:1px solid #8b8b8b;border-radius:3px;box-shadow:inset 0 1px 2px #0003}
+.bar.win7 i{border-radius:2px;background:linear-gradient(#b8f5ae,#5fdb4f 50%,#22b514 50%,#4fd23f);box-shadow:inset 0 0 0 1px #1d8d12}
+.bar.win11{height:max(4px,calc(var(--ph)*.18px));border-radius:99px;background:#ffffff40}
+.bar.win11 i{border-radius:99px;background:#0078d4}
+.bar.aqua{padding:2px;background:linear-gradient(#cfd3d8,#f4f5f6);border:1px solid #8e949b;border-radius:999px;box-shadow:inset 0 1px 2px #0004}
+.bar.aqua i{border-radius:999px;background:linear-gradient(#fff6,#fff0 50%),repeating-linear-gradient(-45deg,#3d8cf0 0 8px,#6db0ff 8px 16px);box-shadow:inset 0 0 0 1px #1f5fb8}
+.bar.mc{padding:2px;background:#000;border:2px solid #373737}
+.bar.mc i{background:linear-gradient(#caff7a 0 22%,#7edc1b 22% 70%,#4a9a0c 70%)}
+.bar.pkmn{padding:2px;background:#4a4a4a;border:2px solid #f0f0f0;border-radius:999px;box-shadow:0 0 0 2px #2a2f3a}
+.bar.pkmn i{border-radius:999px;background:linear-gradient(#b4f8c0 0 25%,#40d868 25% 60%,#28b050 60%)}
+.bar.souls{height:max(8px,calc(var(--ph)*.5px));background:#120a0a;border:1px solid #4a4038;box-shadow:0 0 0 1px #000,inset 0 0 4px #000}
+.bar.souls i{background:linear-gradient(#e0605a,#a31515 45%,#6e0a0a)}
+.bar.atb{padding:2px;background:#10143a;border:2px solid #cfd3ea;border-radius:4px;box-shadow:0 0 0 1px #000}
+.bar.atb i{background:linear-gradient(#fff7b0,#ffd23a 40%,#f08a00 90%)}
+.bar.mana,.bar.hpg,.bar.energy{border:2px solid #000;border-radius:3px;background:#0b0b0b;box-shadow:inset 0 0 0 1px #fff2}
+.bar.mana i,.bar.hpg i,.bar.energy i{background:linear-gradient(#fff5,#fff0 50%,#0003),linear-gradient(90deg,var(--x1),var(--x2))}
+.bar.mana{--x1:#0a3fb0;--x2:#3b8bff}
+.bar.hpg{--x1:#0f6a12;--x2:#3ed03a}
+.bar.energy{--x1:#a88400;--x2:#ffe24a}
+.bar.neon{height:max(6px,calc(var(--ph)*.35px));border-radius:99px;background:#ffffff14;box-shadow:inset 0 0 0 1px #ffffff22}
+.bar.neon i{border-radius:99px;background:var(--bc);box-shadow:0 0 6px var(--bc),0 0 14px var(--bc)}
+.bar.pip{padding:3px;background:#031403;border:2px solid #1fff5a;box-shadow:0 0 8px #1fff5a66}
+.bar.pip i{background:#1fff5a}
+.bar.shield{padding:2px;background:#021722;border:1px solid #38d9ff;border-radius:2px;box-shadow:0 0 8px #38d9ff55}
+.bar.shield i{background:linear-gradient(#bff4ff,#38d9ff 45%,#0c8fb8)}
+.bar.bit8{padding:3px;background:#000;border:3px solid #f8f8f8}
+.bar.bit8 i{background:linear-gradient(#fff 0 25%,#f8d800 25% 75%,#c08800 75%)}
+.bar.sc,.bar.tetris{--mk:repeating-linear-gradient(90deg,#000 0 4px,#0000 4px 5px)}
+.bar.tetris{--mk:repeating-linear-gradient(90deg,#000 0 10px,#0000 10px 12px)}
+.bar.sc i,.bar.tetris i{-webkit-mask-image:var(--mk);mask-image:var(--mk)}
+.bar.zelda{padding:2px;background:#0d2a0d;border:2px solid #f3ecc0;border-radius:4px;box-shadow:0 0 0 2px #1c1c1c}
+.bar.zelda i{border-radius:2px;background:linear-gradient(#b6ffb0,#3dd63d 35%,#1e9e24)}
+.bar.hearts{--hm:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 14S2 10.2 2 5.7C2 3.5 3.6 2 5.4 2 6.5 2 7.5 2.6 8 3.5 8.5 2.6 9.5 2 10.6 2 12.4 2 14 3.5 14 5.7 14 10.2 8 14 8 14Z'/%3E%3C/svg%3E")}
+.bar.hearts::before{content:"";position:absolute;inset:0;background:#3b1c22}
+.bar.hearts::before,.bar.hearts i{-webkit-mask:var(--hm) 0 0/10% 100% repeat-x;mask:var(--hm) 0 0/10% 100% repeat-x}
+.bar.hearts i{position:absolute;inset:0;width:100%;background:linear-gradient(#ff8a8a,#e0202e 55%,#a60f1c)}
+.bar.sf{padding:3px;background:#b01212;border:3px solid #f4f4f4;box-shadow:0 0 0 2px #000;transform:skewX(-18deg);transform-origin:left center}
+.bar.sf i{background:linear-gradient(#fff27a,#ffd800 45%,#ff9d00)}
+.bar.lol{padding:2px;background:#0c1a10;border:2px solid #8a7340;border-radius:1px}
+.bar.lol i{background:linear-gradient(#7dff8c,#2fb53f 50%,#1b7d2a)}
+.bar.lol::after{content:"";position:absolute;inset:2px;background:repeating-linear-gradient(90deg,#0009 0 1px,#0000 1px 12px)}
+.bar.fnite{padding:2px;background:#0a1830b0;border:1px solid #ffffff55}
+.bar.fnite i{background:linear-gradient(#bfe8ff,#38a8ff 40%,#1471d8);box-shadow:0 0 8px #38a8ff}
+.bar.pac{background:radial-gradient(circle,#ffb8ae 0 2.5px,#0000 3px) 0 50%/16px 100% repeat-x #000;border:2px solid #2121de;border-radius:4px}
+.bar.pac i{position:relative;background:#000}
+.bar.pac i::after{content:"";position:absolute;right:calc(var(--ph)*-.42px);top:50%;width:calc(var(--ph)*.62px);aspect-ratio:1;transform:translateY(-50%);border-radius:50%;background:conic-gradient(#ffe600 0 50deg,#0000 50deg 130deg,#ffe600 130deg)}
+.bar.among{padding:3px;background:#6a6a72;border:3px solid #1b1b1f;border-radius:8px}
+.bar.among i{border-radius:5px;background:linear-gradient(#9dffa0 0 22%,#38d048 22%)}
+.bar.sc{height:max(6px,calc(var(--ph)*.3px));padding:1px;background:#000;border:1px solid #1a1a1a}
+.bar.sc i{background:linear-gradient(#aaffaa,#2fe02f 50%,#12a012)}
+.bar.tetris{padding:2px;background:#000;border:2px solid #666}
+.bar.tetris i{background:repeating-linear-gradient(90deg,#00e5ff 0 12px,#ffe600 12px 24px,#b300ff 24px 36px,#22e000 36px 48px,#ff2020 48px 60px,#2a2aff 60px 72px,#ff9a00 72px 84px)}
+.bar.steam{height:max(6px,calc(var(--ph)*.3px));background:#16202d;box-shadow:inset 0 0 0 1px #0007}
+.bar.steam i{background:linear-gradient(90deg,#06bfff,#2d73ff);box-shadow:0 0 6px #06bfff88}
+.bar.twitch{padding:3px;background:#18181b;border-radius:99px;box-shadow:inset 0 0 0 1px #ffffff1f}
+.bar.twitch i{border-radius:99px;background:linear-gradient(#b48aff,#9146ff 60%,#772ce8)}
+.bar.yt{height:max(4px,calc(var(--ph)*.16px));background:#ffffff40;border-radius:99px}
+.bar.yt i{position:relative;border-radius:99px;background:#f00}
+.bar.yt i::after{content:"";position:absolute;right:-5px;top:50%;width:calc(var(--ph)*.4px);aspect-ratio:1;transform:translateY(-50%);border-radius:50%;background:#f00}
+.bar.hazard{padding:2px;background:#111;border:2px solid #ffd400}
+.bar.hazard i{background:repeating-linear-gradient(-45deg,#111 0 8px,#ffd400 8px 16px)}
+.cd.wr .g .n,.cd.wr .s{color:var(--wc)}
+.cd.bk .g .n,.cd.bk .s{opacity:.15}
+.bar.hl,.bar.c64,.bar.gb{--mk:repeating-linear-gradient(90deg,#000 0 6px,#0000 6px 8px)}
+.bar.rpm{--mk:repeating-linear-gradient(90deg,#000 0 10px,#0000 10px 12px)}
+.bar.hl i,.bar.c64 i,.bar.gb i,.bar.rpm i{-webkit-mask-image:var(--mk);mask-image:var(--mk)}
+.bar.mario{padding:2px;background:#000;border:2px solid #000;box-shadow:0 0 0 2px #fff}
+.bar.mario i{background:repeating-linear-gradient(90deg,#0000 0 14px,#000 14px 16px),repeating-linear-gradient(0deg,#0000 0 6px,#000 6px 8px),#c84c0c}
+.bar.dota{height:max(8px,calc(var(--ph)*.45px));padding:1px;background:#000}
+.bar.dota i{background:linear-gradient(#9dff7a,#3dbb2a 50%,#237a17)}
+.bar.dota::after{content:"";position:absolute;inset:1px;background:repeating-linear-gradient(90deg,#000 0 1px,#0000 1px 9px)}
+.bar.diablo{padding:3px;background:#120606;border:2px solid #6b5a3a;border-radius:3px;box-shadow:0 0 0 1px #000,inset 0 0 6px #000}
+.bar.diablo i{border-radius:2px;background:linear-gradient(#ff7a6a,#c01212 45%,#6a0606);box-shadow:0 0 8px #c0121288}
+.bar.elden,.bar.eldeng,.bar.eldenb{height:max(8px,calc(var(--ph)*.4px));padding:1px;background:#0008;border:1px solid #bfae80;box-shadow:0 0 0 1px #000}
+.bar.elden i,.bar.eldeng i,.bar.eldenb i{background:linear-gradient(#fff3,#fff0 50%,#0004),linear-gradient(90deg,var(--x1),var(--x2));clip-path:polygon(0 0,100% 0,calc(100% - 6px) 100%,0 100%)}
+.bar.elden{--x1:#7a0f0f;--x2:#d83030}
+.bar.eldeng{--x1:#1f6a1a;--x2:#7fd13b}
+.bar.eldenb{--x1:#143a8a;--x2:#4a8bff}
+.bar.sims{height:max(8px,calc(var(--ph)*.55px));padding:2px;background:#3a3f44;border-radius:3px;box-shadow:inset 0 1px 2px #000a}
+.bar.sims i{border-radius:2px;background:linear-gradient(#b4ff8a,#59c43a 55%,#3a9a22)}
+.bar.sims::after{content:"";position:absolute;inset:2px;background:repeating-linear-gradient(90deg,#0000 0 9px,#3a3f44 9px 10px)}
+.bar.undertale{height:max(10px,calc(var(--ph)*.6px));background:#c00000}
+.bar.undertale i{background:#ff0}
+.bar.hl{padding:2px;background:#000;border:2px solid #ffa000}
+.bar.hl i{background:#ffa000}
+.bar.win31{padding:2px;background:#fff;border:2px solid;border-color:#808080 #fff #fff #808080;box-shadow:inset 1px 1px #000}
+.bar.win31 i{background:#000080}
+.bar.win10{padding:1px;background:#e6e6e6;border:1px solid #bcbcbc}
+.bar.win10 i{background:#06b025}
+.bar.macos{height:max(6px,calc(var(--ph)*.22px));border-radius:99px;background:#d6d6d9;box-shadow:inset 0 0 0 1px #0002}
+.bar.macos i{border-radius:99px;background:#0a84ff}
+.bar.material{height:max(4px,calc(var(--ph)*.16px));background:#e8def8;border-radius:99px}
+.bar.material i{border-radius:99px;background:#6750a4}
+.bar.ubuntu{padding:3px;background:#2c001e;border:1px solid #772953;border-radius:99px}
+.bar.ubuntu i{border-radius:99px;background:linear-gradient(#ff9a6c,#e95420 55%,#c34113)}
+.bar.ascii,.bar.hash,.bar.blocks{display:flex;align-items:center;padding:0 8px;background:#0b0b0b;border:1px solid #2b2b2b;color:#33ff66;font:calc(var(--ph)*.55px)/1 ui-monospace,Consolas,"Courier New",monospace;white-space:pre;overflow:hidden}
+.bar.ascii i,.bar.hash i,.bar.blocks i{width:auto;height:auto;font-style:normal}
+.bar.batt{width:calc(100% - 8px);padding:3px;background:#0006;border:2px solid #e8e8e8;border-radius:5px}
+.bar.batt::after{content:"";position:absolute;right:-8px;top:28%;height:44%;width:5px;background:#e8e8e8;border-radius:0 3px 3px 0}
+.bar.batt i{border-radius:2px;background:linear-gradient(#9dff9d,#35c84a 55%,#1f9a33)}
+.bar.rainbow,.bar.sunset{padding:3px;background:#0006;border-radius:99px}
+.bar.rainbow i,.bar.sunset i{border-radius:99px;background-size:var(--bw,100%) 100%}
+.bar.rainbow i{background-image:linear-gradient(90deg,#ff3b3b,#ff9f1c,#ffe83d,#3ddc5a,#34b4ff,#8a5cff,#ff4fd8)}
+.bar.sunset i{background-image:linear-gradient(90deg,#ffb347,#ff5e62 50%,#a044ff)}
+@keyframes cm{to{background-position:28.28px 0}}
+.bar.candy{padding:3px;background:#fff5;border-radius:99px;box-shadow:inset 0 0 0 1px #0003}
+.bar.candy i{border-radius:99px;background:repeating-linear-gradient(-45deg,#e8283a 0 10px,#fff 10px 20px) 0 0/28.28px 100%;animation:cm 1s linear infinite}
+.bar.gold{padding:3px;background:#1a1405;border:2px solid #c9a227;border-radius:4px}
+.bar.gold i{border-radius:2px;background:linear-gradient(#fff6b0,#f2c230 35%,#b8860b 70%,#e8b923)}
+.bar.lava{padding:3px;background:#1a0500;border:2px solid #4a1a0a;border-radius:4px}
+.bar.lava i{border-radius:2px;background:linear-gradient(90deg,#ffe14a,#ff8a00 40%,#e0220a) 0 0/var(--bw,100%) 100%;box-shadow:0 0 10px #ff6a0088}
+.bar.rpm{padding:2px;background:#0b0b0b;border:2px solid #444}
+.bar.rpm i{background:linear-gradient(90deg,#26d14a 55%,#ffd21f 70%,#ff2b2b 90%) 0 0/var(--bw,100%) 100%}
+.bar.traffic{padding:2px;background:#101010;border:1px solid #555;border-radius:4px}
+.bar.traffic i{border-radius:2px;background:linear-gradient(90deg,#e02424,#f5b800 50%,#2ecc40) 0 0/var(--bw,100%) 100%}
+.bar.c64{padding:4px;background:#40318d;border:6px solid #887ecb}
+.bar.c64 i{background:#887ecb}
+.bar.gb{padding:3px;background:#9bbc0f;border:3px solid #0f380f;border-radius:2px}
+.bar.gb i{background:#0f380f}
+.bar.vapor{padding:3px;background:#1b0a3a;border:2px solid #ff71ce;box-shadow:0 0 10px #ff71ce88}
+.bar.vapor i{background:linear-gradient(90deg,#ff71ce,#b967ff,#01cdfe) 0 0/var(--bw,100%) 100%}
 html.view,html.view body{background:transparent;overflow:hidden;padding:0;margin:0}
 @media(max-width:820px){.wrap{grid-template-columns:1fr}.out{position:static}}
 </style>
@@ -106,21 +233,101 @@ html.view,html.view body{background:transparent;overflow:hidden;padding:0;margin
   <label>Texte (Tage, Stunden, Minuten, Sekunden – mit Komma getrennt)<input data-k="lt"></label>
   <label>Beschriftungsgröße in Prozent<span class="v"></span><input type="range" min="10" max="50" data-k="ls"></label>
  </fieldset>
+ <fieldset><legend>Warnung am Ende</legend>
+  <label class="ck"><input type="checkbox" data-k="wa"> Zahlen werden unter 1 Minute rot und blinken in den letzten 10 Sekunden</label>
+  <label>Warnfarbe<input type="color" data-k="wc"></label>
+  <label class="ck"><input type="checkbox" id="tw"> In der Vorschau testen (zählt 15 Sekunden in Schleife)</label>
+ </fieldset>
  <fieldset><legend>Fortschrittsleiste</legend>
   <label>Stil<select data-k="pb">
    <option value="">Keine Leiste</option>
-   <option value="classic">Klassischer Ladebalken</option>
-   <option value="xpp">WoW-Erfahrungsleiste (lila, Steinrahmen)</option>
-   <option value="xpb">WoW-Erfahrungsleiste (blau, Steinrahmen)</option>
-   <option value="xpsp">WoW-Erfahrungsleiste (lila, schlicht)</option>
-   <option value="xpsb">WoW-Erfahrungsleiste (blau, schlicht)</option>
-   <option value="hp">Healthbar (rot)</option>
-   <option value="retro">Retro-Windows-Ladebalken</option>
-   <option value="cast">WoW-Zauberleiste (gold)</option>
+   <optgroup label="Allgemein">
+    <option value="classic">Klassischer Ladebalken</option>
+    <option value="neon">Neon (Farbe einstellbar)</option>
+    <option value="hazard">Warnstreifen (gelb-schwarz)</option>
+   </optgroup>
+   <optgroup label="World of Warcraft">
+    <option value="xpp">Erfahrung lila (Steinrahmen)</option>
+    <option value="xpb">Erfahrung blau (Steinrahmen)</option>
+    <option value="xpsp">Erfahrung lila (schlicht)</option>
+    <option value="xpsb">Erfahrung blau (schlicht)</option>
+    <option value="hp">Healthbar (rot)</option>
+    <option value="hpg">Lebensleiste (grün)</option>
+    <option value="mana">Manaleiste (blau)</option>
+    <option value="energy">Energieleiste (gelb)</option>
+    <option value="cast">Zauberleiste (gold)</option>
+   </optgroup>
+   <optgroup label="Betriebssysteme">
+    <option value="retro">Windows 95/98 (blaue Blöcke)</option>
+    <option value="winxp">Windows XP (grüne Blöcke)</option>
+    <option value="win7">Windows Vista/7 (grün, glänzend)</option>
+    <option value="win11">Windows 11 (dünne Linie)</option>
+    <option value="aqua">macOS Aqua (blau gestreift)</option>
+    <option value="macos">macOS modern (blaue Linie)</option>
+    <option value="win31">Windows 3.1 (dunkelblau)</option>
+    <option value="win10">Windows 10 Kopieren (grün)</option>
+    <option value="material">Android Material (violett)</option>
+    <option value="ubuntu">Ubuntu (orange auf aubergine)</option>
+   </optgroup>
+   <optgroup label="Andere Spiele">
+    <option value="mc">Minecraft-Erfahrung (grün)</option>
+    <option value="pkmn">Pokémon-HP (grün)</option>
+    <option value="souls">Dark-Souls-Lebensleiste (rot)</option>
+    <option value="atb">Final-Fantasy-ATB (gelb)</option>
+    <option value="pip">Fallout-Terminal (grüne Blöcke)</option>
+    <option value="bit8">8-Bit-Energie (gelbe Blöcke)</option>
+    <option value="shield">Sci-Fi-Schild (cyan, Blöcke)</option>
+    <option value="zelda">Zelda-Magieleiste (grün)</option>
+    <option value="hearts">Herzen (Zelda/Minecraft)</option>
+    <option value="sf">Street-Fighter-Leiste (gelb auf rot)</option>
+    <option value="lol">League-of-Legends-Leben (grün, Kerben)</option>
+    <option value="fnite">Fortnite-Schild (blau)</option>
+    <option value="pac">Pac-Man (frisst Punkte)</option>
+    <option value="among">Among-Us-Aufgaben (grün)</option>
+    <option value="sc">StarCraft-Einheit (grüne Mini-Blöcke)</option>
+    <option value="tetris">Tetris (bunte Blöcke)</option>
+    <option value="mario">Super-Mario-Ziegel</option>
+    <option value="dota">Dota-2-Leben (grün, Kerben)</option>
+    <option value="diablo">Diablo-Leben (blutrot)</option>
+    <option value="elden">Elden-Ring-Leben (rot, schräg)</option>
+    <option value="eldeng">Elden-Ring-Ausdauer (grün)</option>
+    <option value="eldenb">Elden-Ring-FP (blau)</option>
+    <option value="sims">Sims-Bedürfnis (grün)</option>
+    <option value="undertale">Undertale (gelb auf rot)</option>
+    <option value="hl">Half-Life-HEV (orange Blöcke)</option>
+   </optgroup>
+   <optgroup label="Streaming und Web">
+    <option value="twitch">Twitch-Lila</option>
+    <option value="steam">Steam-Download (blau)</option>
+    <option value="yt">YouTube (rot mit Punkt)</option>
+   </optgroup>
+   <optgroup label="Retro">
+    <option value="c64">Commodore 64 (hellblau)</option>
+    <option value="gb">Game Boy (4 Grüntöne)</option>
+   </optgroup>
+   <optgroup label="Terminal">
+    <option value="ascii">Terminal [=====&gt;    ]</option>
+    <option value="hash">Terminal [#####-----]</option>
+    <option value="blocks">Terminal [█████░░░░░]</option>
+   </optgroup>
+   <optgroup label="Sonstige">
+    <option value="batt">Akku (grün)</option>
+    <option value="rainbow">Regenbogen</option>
+    <option value="candy">Zuckerstange (animiert)</option>
+    <option value="sunset">Sonnenuntergang</option>
+    <option value="gold">Gold</option>
+    <option value="lava">Lava</option>
+    <option value="rpm">Drehzahlmesser (grün, gelb, rot)</option>
+    <option value="traffic">Ampel (rot, gelb, grün)</option>
+    <option value="vapor">Vaporwave</option>
+   </optgroup>
   </select></label>
   <label>Höhe<span class="v"></span><input type="range" min="8" max="60" data-k="ph"></label>
-  <label>Farbe (nur klassischer Ladebalken)<input type="color" data-k="bc"></label>
-  <p class="mu">Die letzten 90 Tage füllen die Leiste von 25 % bis 100 %: 12 Tage vor dem Ziel ist sie zu 90 % voll. Davor füllt sie sich langsam von 0 % (365 Tage vor dem Ziel) bis 25 % (90 Tage vor dem Ziel). Sie springt nie zurück.</p>
+  <label>Farbe (klassischer Ladebalken und Neon)<input type="color" data-k="bc"></label>
+  <label class="ck"><input type="checkbox" data-k="us"> Eigenes Startdatum für die Leiste</label>
+  <label>Start der Leiste (leer ab hier, voll zum Zielzeitpunkt)<input type="datetime-local" step="1" data-k="st"></label>
+  <button class="sec" id="sn">Start auf jetzt setzen</button>
+  <p class="mu">Ohne eigenes Startdatum gilt: Die letzten 90 Tage füllen die Leiste von 25 % bis 100 %, davor füllt sie sich langsam von 0 % (365 Tage vor dem Ziel) bis 25 %. Mit Startdatum füllt sie sich gleichmäßig vom Start bis zum Ziel und ist vor dem Start leer.</p>
     <label>Füllstand in der Vorschau<span class="v">60 %</span><input type="range" min="0" max="100" value="60" id="pt"></label>
   <p class="mu">Der Füllstand gilt nur für die Vorschau hier. Im Stream füllt sich die Leiste nach der echten Zeit.</p>
  </fieldset>
@@ -150,14 +357,14 @@ html.view,html.view body{background:transparent;overflow:hidden;padding:0;margin
 <script>
 (()=>{
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const D={t:Date.now()+7*864e5,img:'',is:110,f:'Cinzel',fs:72,dc:'#ebe0c4',lc:'#d9cba3',sl:1,lt:'Tage,Stunden,Minuten,Sekunden',ls:22,sh:1,shc:'#000000',shd:3,shb:6,sd:1,end:'',sync:1,pb:'',ph:28,bc:'#d2ac56',wn:400,wl:400};
+const D={t:Date.now()+7*864e5,img:'',is:110,f:'Cinzel',fs:72,dc:'#ebe0c4',lc:'#d9cba3',sl:1,lt:'Tage,Stunden,Minuten,Sekunden',ls:22,sh:1,shc:'#000000',shd:3,shb:6,sd:1,end:'',sync:1,pb:'',ph:28,bc:'#d2ac56',wn:400,wl:400,us:0,st:Date.now(),wa:1,wc:'#ff3b30'};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const enc=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
 const dec=s=>JSON.parse(decodeURIComponent(escape(atob(s.replace(/-/g,'+').replace(/_/g,'/')))));
 const m=location.hash.match(/c=([\w-]+)/),view=!!m;
 
 /* Zeitabgleich: erste erreichbare Quelle, 3 Messungen, kleinste Laufzeit gewinnt */
-let ov=.6,off=0,info='Atomzeit wird abgefragt …',got=false;
+let tw=0,ov=.6,off=0,info='Atomzeit wird abgefragt …',got=false;
 const iso=t=>Date.parse(String(t).slice(0,23)+'Z');
 async function sync(){
  const src=[
@@ -182,6 +389,8 @@ function loadFont(f,d,ws){clearTimeout(ft);ft=setTimeout(()=>{const n=String(f||
   const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family='+q+(w?':wght@'+w:'')+'&display=swap';document.head.append(l)}},d)}
 
 /* Countdown aufbauen und aktualisieren */
+const BP={retro:12,shield:12,winxp:10,pip:8,bit8:8,sc:5,tetris:12,hl:8,c64:8,gb:8,rpm:12};
+const TA={ascii:['=','>',' '],hash:['#','','-'],blocks:['█','','░']};let tc;
 const XS={xpsp:[[90,26,154],[164,67,232]],xpsb:[[15,76,168],[61,157,255]]};
 function barHtml(pb){
  const xp=/^xp/.test(pb),z=XS[pb];let cells='<i></i>';
@@ -193,7 +402,7 @@ function build(el,c){
  st.setProperty('--ff',"'"+String(c.f).replace(/['"\\;]/g,'')+"'");
  st.setProperty('--fs',+c.fs);st.setProperty('--dc',c.dc);st.setProperty('--lc',c.lc);
  st.setProperty('--ls',c.ls/100);st.setProperty('--is',(+c.is)+'px');
- st.setProperty('--ph',+c.ph);st.setProperty('--wn',+c.wn||400);st.setProperty('--wl',+c.wl||400);st.setProperty('--fb',Math.max(3,Math.round(c.ph*.11))+'px');st.setProperty('--bc',c.bc);
+ st.setProperty('--ph',+c.ph);st.setProperty('--wc',c.wc||'#ff3b30');st.setProperty('--wn',+c.wn||400);st.setProperty('--wl',+c.wl||400);st.setProperty('--fb',Math.max(3,Math.round(c.ph*.11))+'px');st.setProperty('--bc',c.bc);
  st.setProperty('--sh',c.sh?`${+c.shd}px ${+c.shd}px ${+c.shb}px ${c.shc}`:'0 0 0 transparent');
  el.innerHTML=(c.img&&c.is>0?`<img src="${esc(c.img)}" alt="">`:'')+'<div class="m"><div class="w">'+
   ix.map((i,k)=>(k?'<div class="s">:</div>':'')+`<div class="g"><div class="n">00</div>${c.sl?`<div class="l">${esc(L[i]||'')}</div>`:''}</div>`).join('')+
@@ -201,19 +410,22 @@ function build(el,c){
  loadFont(c.f,view?0:500,[c.wn,c.wl]);
 }
 function tick(el,c){
- const ms=c.t-(Date.now()+(c.sync?off:0)),s=ms>0?Math.ceil(ms/1000):0;
+ let ms=c.t-(Date.now()+(c.sync?off:0));if(el.id==='pv'&&tw)ms=15000-Date.now()%15000;const s=ms>0?Math.ceil(ms/1000):0;
  const v=c.sd?[s/86400,s%86400/3600,s%3600/60,s%60]:[s/3600,s%3600/60,s%60],n=el.querySelectorAll('.g .n');
  v.forEach((x,i)=>{const t=String(Math.floor(x)).padStart(2,'0');if(n[i]&&n[i].textContent!==t)n[i].textContent=t});
+ el.classList.toggle('wr',!!c.wa&&s<=59);el.classList.toggle('bk',!!c.wa&&s>0&&s<=10&&ms%1000>0&&ms%1000<500);
  const dn=ms<=0&&c.end;
  const b=el.querySelector('.bar');
- if(b){const d=ms/864e5,p=el.id==='pv'?ov:d<=0?1:d<=90?.25+.75*(1-d/90):d<365?.25*(365-d)/275:0;
+ if(b){const d=ms/864e5,tot=c.t-c.st,p=el.id==='pv'?ov:c.us?(tot>0?Math.min(1,Math.max(0,1-ms/tot)):(ms<=0?1:0)):d<=0?1:d<=90?.25+.75*(1-d/90):d<365?.25*(365-d)/275:0;
   if(b.classList.contains('xp')){
    const cs=getComputedStyle(b),g=parseFloat(cs.columnGap)||0,e=(parseFloat(cs.paddingLeft)||0)+(parseFloat(cs.borderLeftWidth)||0),
     cw=Math.round((el.querySelector('.w').offsetWidth-2*e-19*g)/20);
    if(cw>0&&b._cw!==cw){b._cw=cw;b.style.gridTemplateColumns=`repeat(20,${cw}px)`;b.style.width=(20*cw+19*g+2*e)+'px'}
    b.querySelectorAll('u').forEach((u,i)=>u.style.width=Math.min(1,Math.max(0,p*20-i))*100+'%');
-  }else{const f=b.firstChild,iw=b.clientWidth-4;
-   f.style.width=c.pb==='retro'?(p>=1?iw:Math.floor(iw*p/12)*12)+'px':p*100+'%'}}
+  }else{const f=b.firstChild,cs=getComputedStyle(b),iw=b.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight),bp=BP[c.pb];
+   b.style.setProperty('--bw',iw+'px');const A=TA[c.pb];
+   if(A){tc=tc||document.createElement('canvas').getContext('2d');tc.font=cs.fontSize+' '+cs.fontFamily;const n=Math.max(8,Math.floor(iw/Math.max(...['0',A[0],A[2]].map(x=>tc.measureText(x).width)))-2),k=Math.round(p*n),h=A[1]&&k>0&&k<n;f.textContent='['+A[0].repeat(k-(h?1:0))+(h?A[1]:'')+A[2].repeat(n-k)+']'}
+   else if(c.pb==='hearts')f.style.clipPath=`inset(0 ${(1-p)*100}% 0 0)`;else f.style.width=bp?(p>=1?iw:Math.floor(iw*p/bp)*bp)+'px':p*100+'%'}}
  el.querySelector('.m').style.display=dn?'none':'';
  el.querySelector('.e').style.display=dn?'':'none';
 }
@@ -238,7 +450,7 @@ if(view){
 
  function fill(){
   $$('[data-k]').forEach(i=>{const k=i.dataset.k,v=S[k];
-   if(i.type==='checkbox')i.checked=!!v;else i.value=k==='t'?loc(v):v;
+   if(i.type==='checkbox')i.checked=!!v;else i.value=(k==='t'||k==='st')?loc(v):v;
    const o=i.closest('label')?.querySelector('.v');if(o)o.textContent=v});
   $('#iu').value=/^data:/.test(S.img)?'':S.img;
  }
@@ -249,8 +461,9 @@ if(view){
  }
  $$('[data-k]').forEach(i=>i.addEventListener('input',()=>{
   const k=i.dataset.k;
-  S[k]=i.type==='checkbox'?+i.checked:k==='t'?(new Date(i.value).getTime()||S.t):(i.type==='range'?+i.value:i.value);
+  S[k]=i.type==='checkbox'?+i.checked:(k==='t'||k==='st')?(new Date(i.value).getTime()||S[k]):(i.type==='range'?+i.value:i.value);
   const o=i.closest('label')?.querySelector('.v');if(o)o.textContent=S[k];
+  if(k==='pb'){if(S.pb==='neon'&&S.bc==='#d2ac56')S.bc='#00f0ff';else if(S.pb==='classic'&&S.bc==='#00f0ff')S.bc='#d2ac56';fill()}
   upd();
  }));
  $('#iu').oninput=e=>{S.img=e.target.value.trim();upd()};
@@ -277,6 +490,8 @@ if(view){
   const x=e.target.value.match(/c=([\w-]+)/);if(!x)return;
   try{S=Object.assign({},D,dec(x[1]));fill();upd()}catch(err){}
  };
+ $('#sn').onclick=()=>{S.st=Date.now();fill();upd()};
+ $('#tw').onchange=e=>{tw=+e.target.checked};
  $('#pt').oninput=e=>{ov=+e.target.value/100;e.target.closest('label').querySelector('.v').textContent=e.target.value+' %'};
  fill();upd();sync();setInterval(sync,6e5);
  setInterval(()=>tick(pv,S),100);
