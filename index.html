@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OBS Countdown Builder</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap">
+<style>
+:root{--bg:#0e1a20;--pn:#152730;--bd:#26414d;--tx:#ece3cc;--mu:#8fa5ad;--ac:#d2ac56;--tl:#1f6f8b}
+*{box-sizing:border-box}
+body{margin:0;padding:20px;font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--tx)}
+h1{font:400 26px Cinzel,serif;margin:0 0 4px;color:var(--ac)}
+.sub{margin:0 0 18px;color:var(--mu)}
+.wrap{display:grid;grid-template-columns:minmax(300px,390px) 1fr;gap:22px;align-items:start;max-width:1200px}
+.out{position:sticky;top:16px}
+fieldset{border:1px solid var(--bd);border-radius:8px;margin:0 0 14px;padding:4px 14px 14px;background:var(--pn)}
+legend{padding:0 6px;color:var(--ac);font-family:Cinzel,serif;font-size:15px}
+label{display:block;margin-top:10px;color:var(--mu)}
+label.ck{display:flex;gap:8px;align-items:center;color:var(--tx)}
+.v{color:var(--tx);margin-left:6px}
+input:not([type=checkbox]):not([type=range]):not([type=color]),textarea{width:100%;margin-top:4px;padding:7px 9px;background:#0b141a;color:var(--tx);border:1px solid var(--bd);border-radius:6px;font:inherit}
+input[type=range]{width:100%;accent-color:var(--ac)}
+input[type=color]{display:block;width:100%;height:34px;margin-top:4px;padding:2px;background:#0b141a;border:1px solid var(--bd);border-radius:6px}
+input[type=checkbox]{accent-color:var(--ac)}
+:focus-visible{outline:2px solid var(--tl);outline-offset:2px}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+button,.btn{display:inline-block;margin-top:10px;padding:8px 14px;background:var(--ac);color:#1a1405;border:0;border-radius:6px;font:600 14px system-ui,sans-serif;cursor:pointer;text-decoration:none}
+button.sec{background:transparent;color:var(--tx);border:1px solid var(--bd)}
+textarea{resize:vertical;word-break:break-all;font:12px ui-monospace,Consolas,monospace!important}
+#pvb{overflow:auto;border:1px solid var(--bd);border-radius:8px;background:#1a1a1a;min-height:150px;display:flex;align-items:center}
+.mu{color:var(--mu);margin:8px 0 0}
+details{margin-top:14px;color:var(--mu)}
+b{color:var(--tx)}
+/* Countdown (gleiches Markup in Vorschau und OBS) */
+.cd{display:inline-flex;align-items:flex-start;gap:calc(var(--fs)*.3px);padding:24px;white-space:nowrap;font-family:var(--ff),serif;color:var(--dc);text-shadow:var(--sh)}
+.cd img{height:var(--is);width:auto;align-self:center;filter:drop-shadow(var(--sh))}
+.w{display:flex;align-self:flex-start;align-items:flex-start;gap:calc(var(--fs)*.25px)}
+.g{display:flex;flex-direction:column;align-items:center}
+.n,.s{font-size:calc(var(--fs)*1px);line-height:1.1}
+.n{font-variant-numeric:tabular-nums;min-width:2ch;text-align:center}
+.l{font-size:calc(var(--fs)*var(--ls)*1px);color:var(--lc);margin-top:calc(var(--fs)*.1px);letter-spacing:.06em}
+select{width:100%;margin-top:4px;padding:7px 9px;background:#0b141a;color:var(--tx);border:1px solid var(--bd);border-radius:6px;font:inherit}
+.m{display:flex;flex-direction:column;align-items:stretch}
+.bar{position:relative;width:100%;height:calc(var(--ph)*1px);margin-top:calc(var(--fs)*.2px);filter:drop-shadow(var(--sh))}
+.bar i{display:block;height:100%;width:0}
+.bar.classic{padding:3px;border-radius:999px;background:rgba(0,0,0,.5);box-shadow:inset 0 1px 3px #000a,0 0 0 1px #fff3}
+.bar.classic i{border-radius:999px;background:linear-gradient(#fff5,#fff0 55%),var(--bc)}
+.bar.xp{display:grid;grid-template-columns:repeat(20,1fr);grid-template-rows:1fr;justify-content:center;align-self:center;column-gap:4px;padding:var(--fb);border:1px solid #070708;border-radius:3px;background:linear-gradient(#fff2,#0004),repeating-linear-gradient(-45deg,#0003 0 2px,#0000 2px 4px),repeating-linear-gradient(45deg,#232327 0 2px,#3b3b41 2px 4px),#2c2c30}
+.bar.xp b{position:relative;display:flex;margin:0;border-radius:3px;background:#0c0510;box-shadow:inset 0 1px 3px #000,0 0 0 1px #000}
+.bar.xp u{display:block;align-self:stretch;width:0;border-radius:3px;background:linear-gradient(#fff4,#fff0 45%,#0000 55%,#0005),linear-gradient(var(--x2),var(--x1));box-shadow:inset 0 0 0 1px #0007}
+.bar.xp b::before,.bar.xp b::after{content:"";position:absolute;left:-5px;width:6px;height:var(--fb);background:#a9a9b0;clip-path:polygon(0 0,100% 0,50% 100%)}
+.bar.xp b::before{top:calc(var(--fb)*-1)}
+.bar.xp b::after{bottom:calc(var(--fb)*-1);transform:scaleY(-1)}
+.bar.xp b:first-child::before,.bar.xp b:first-child::after{display:none}
+.bar.xps{--fb:0px;padding:0;column-gap:2px;border:2px solid #2c2720;border-radius:2px;background:#05040a}
+.bar.xps b{margin:0;border-radius:0;background:#0a0810;box-shadow:none}
+.bar.xps b::before,.bar.xps b::after{display:none}
+.bar.xps u{border-radius:0;background:linear-gradient(#fff4,#fff0 45%,#0003);box-shadow:none}
+.bar.xpp{--x1:#5c0a6a;--x2:#b44cc4}
+.bar.xpb{--x1:#0a3d92;--x2:#52a8ff}
+.bar.hp{border:2px solid #000;border-radius:3px;background:#240808;box-shadow:inset 0 0 0 1px #5a2020}
+.bar.hp i{background:linear-gradient(#fff5,#fff0 50%,#0003),linear-gradient(90deg,#8a0c0c,#e63232)}
+.bar.retro{padding:2px;background:#c0c0c0;border:2px solid;border-color:#808080 #fff #fff #808080;border-radius:0;box-shadow:inset 1px 1px #000}
+.bar.retro i{background:repeating-linear-gradient(90deg,#000080 0 10px,transparent 10px 12px)}
+.bar.cast{padding:2px;border:2px solid #8c7b4a;border-radius:3px;background:#0b0905}
+.bar.cast i{position:relative;background:linear-gradient(#fff5,#fff0 50%,#0003),linear-gradient(90deg,#a8650a,#ffd43b)}
+.bar.cast i::after{content:"";position:absolute;right:-9px;top:-5px;bottom:-5px;width:18px;background:radial-gradient(closest-side,#fff,#ffe88a99 45%,transparent)}
+html.view,html.view body{background:transparent;overflow:hidden;padding:0;margin:0}
+@media(max-width:820px){.wrap{grid-template-columns:1fr}.out{position:static}}
+</style>
+</head>
+<body>
+<main id="app">
+<h1>OBS Countdown Builder</h1>
+<p class="sub">Countdown gestalten, Link kopieren, in OBS als Browserquelle einfügen.</p>
+<div class="wrap">
+<section>
+ <fieldset><legend>Zeit</legend>
+  <label>Zielzeitpunkt (deine Ortszeit)<input type="datetime-local" step="1" data-k="t"></label>
+  <label class="ck"><input type="checkbox" data-k="sync"> Atomzeit-Abgleich über das Internet</label>
+  <label class="ck"><input type="checkbox" data-k="sd"> Tage anzeigen</label>
+  <label>Text nach Ablauf (leer = Nullen bleiben stehen)<input data-k="end" placeholder="z. B. Es geht los!"></label>
+ </fieldset>
+ <fieldset><legend>Bild links</legend>
+  <label>Bild hochladen<input type="file" id="if" accept="image/*"></label>
+  <label>oder Bild-URL<input id="iu" placeholder="https://…/logo.png"></label>
+  <label>Bildhöhe<span class="v"></span><input type="range" min="0" max="250" data-k="is"></label>
+  <button class="sec" id="ir">Bild entfernen</button>
+ </fieldset>
+ <fieldset><legend>Schrift und Farben</legend>
+  <label>Schriftart (jede Google Font, oder eine auf dem PC installierte)<input data-k="f" list="fl" placeholder="z. B. Cinzel" autocomplete="off"></label>
+  <datalist id="fl"></datalist>
+  <label>Zahlengröße<span class="v"></span><input type="range" min="20" max="200" data-k="fs"></label>
+  <div class="r2">
+   <label>Zahlenfarbe<input type="color" data-k="dc"></label>
+   <label>Beschriftungsfarbe<input type="color" data-k="lc"></label>
+  </div>
+ </fieldset>
+ <fieldset><legend>Beschriftung</legend>
+  <label class="ck"><input type="checkbox" data-k="sl"> Beschriftung unter den Zahlen</label>
+  <label>Texte (Tage, Stunden, Minuten, Sekunden – mit Komma getrennt)<input data-k="lt"></label>
+  <label>Beschriftungsgröße in Prozent<span class="v"></span><input type="range" min="10" max="50" data-k="ls"></label>
+ </fieldset>
+ <fieldset><legend>Fortschrittsleiste</legend>
+  <label>Stil<select data-k="pb">
+   <option value="">Keine Leiste</option>
+   <option value="classic">Klassischer Ladebalken</option>
+   <option value="xpp">WoW-Erfahrungsleiste (lila, Steinrahmen)</option>
+   <option value="xpb">WoW-Erfahrungsleiste (blau, Steinrahmen)</option>
+   <option value="xpsp">WoW-Erfahrungsleiste (lila, schlicht)</option>
+   <option value="xpsb">WoW-Erfahrungsleiste (blau, schlicht)</option>
+   <option value="hp">Healthbar (rot)</option>
+   <option value="retro">Retro-Windows-Ladebalken</option>
+   <option value="cast">WoW-Zauberleiste (gold)</option>
+  </select></label>
+  <label>Höhe<span class="v"></span><input type="range" min="8" max="60" data-k="ph"></label>
+  <label>Farbe (nur klassischer Ladebalken)<input type="color" data-k="bc"></label>
+  <label>Start der Leiste (leer bei 0 %, voll zum Zielzeitpunkt)<input type="datetime-local" step="1" data-k="st"></label>
+  <button class="sec" id="sn">Start auf jetzt setzen</button>
+  <label>Füllstand in der Vorschau<span class="v">60 %</span><input type="range" min="0" max="100" value="60" id="pt"></label>
+  <p class="mu">Der Füllstand gilt nur für die Vorschau hier. Im Stream füllt sich die Leiste nach der echten Zeit.</p>
+ </fieldset>
+ <fieldset><legend>Schlagschatten</legend>
+  <label class="ck"><input type="checkbox" data-k="sh"> Schatten verwenden</label>
+  <label>Schattenfarbe<input type="color" data-k="shc"></label>
+  <label>Abstand<span class="v"></span><input type="range" min="0" max="20" data-k="shd"></label>
+  <label>Weichzeichnung<span class="v"></span><input type="range" min="0" max="40" data-k="shb"></label>
+  <p class="mu">Abstand 0 mit Weichzeichnung ergibt einen Schein um die Zahlen.</p>
+ </fieldset>
+</section>
+<section class="out">
+ <div id="pvb"><div id="pv" class="cd"></div></div>
+ <label class="ck" style="margin-top:8px">Vorschau-Hintergrund <input type="color" id="pbc" value="#1a1a1a" style="width:50px;margin:0"></label>
+ <p class="mu" id="syn"></p>
+ <label>Link für die OBS-Browserquelle <span class="v" id="len"></span>
+  <textarea id="out" readonly rows="4"></textarea></label>
+ <button id="cp">Link kopieren</button> <a class="btn sec" id="op" target="_blank" rel="noopener" style="background:transparent;color:var(--tx);border:1px solid var(--bd)">In neuem Tab testen</a>
+ <p class="mu">Empfohlene Größe der Browserquelle: <b id="sz"></b></p>
+ <p class="mu">In OBS: Quellen, Plus, Browser, Link einfügen, Breite und Höhe wie empfohlen eintragen. Das Feld für eigenes CSS kannst du leer lassen, der Hintergrund ist automatisch durchsichtig.</p>
+ <p class="mu">Bei Bild-Upload steckt das (verkleinerte) Bild im Link. Für ein größeres Bild nimm die Bild-URL, zum Beispiel eine Datei aus deinem GitHub-Repository.</p>
+ <details><summary>Bestehenden Link weiterbearbeiten</summary>
+  <textarea id="imp" rows="3" placeholder="Link hier einfügen"></textarea></details>
+</section>
+</div>
+</main>
+<script>
+(()=>{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const D={t:Date.now()+7*864e5,img:'',is:110,f:'Cinzel',fs:72,dc:'#ebe0c4',lc:'#d9cba3',sl:1,lt:'Tage,Stunden,Minuten,Sekunden',ls:22,sh:1,shc:'#000000',shd:3,shb:6,sd:1,end:'',sync:1,pb:'',ph:28,bc:'#d2ac56',st:Date.now()};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const enc=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+const dec=s=>JSON.parse(decodeURIComponent(escape(atob(s.replace(/-/g,'+').replace(/_/g,'/')))));
+const m=location.hash.match(/c=([\w-]+)/),view=!!m;
+
+/* Zeitabgleich: erste erreichbare Quelle, 3 Messungen, kleinste Laufzeit gewinnt */
+let ov=.6,off=0,info='Atomzeit wird abgefragt …',got=false;
+const iso=t=>Date.parse(String(t).slice(0,23)+'Z');
+async function sync(){
+ const src=[
+  ['worldtimeapi.org',async()=>iso((await(await fetch('https://worldtimeapi.org/api/timezone/Etc/UTC',{cache:'no-store'})).json()).utc_datetime)],
+  ['timeapi.io',async()=>iso((await(await fetch('https://timeapi.io/api/Time/current/zone?timeZone=UTC',{cache:'no-store'})).json()).dateTime)],
+  ['Server-Zeitstempel',async()=>Date.parse((await fetch(location.href.split('#')[0],{method:'HEAD',cache:'no-store'})).headers.get('date'))+500]
+ ];
+ for(const [n,f] of src){
+  try{let b=null;
+   for(let i=0;i<3;i++){const a=Date.now(),s=await f(),z=Date.now();if(isNaN(s))throw 0;if(!b||z-a<b.r)b={r:z-a,o:s-(a+z)/2}}
+   off=b.o;got=true;info='Atomzeit über '+n+', PC-Uhr weicht '+Math.round(off)+' ms ab';return;
+  }catch(e){}
+ }
+ if(!got)info='Keine Zeitquelle erreichbar, es läuft die PC-Uhr';
+}
+
+/* Schriften */
+const LF=new Set();let ft;
+function loadFont(f,d){clearTimeout(ft);ft=setTimeout(()=>{const n=String(f||'').trim();if(!n||LF.has(n))return;LF.add(n);
+ const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family='+encodeURIComponent(n).replace(/%20/g,'+')+'&display=swap';document.head.append(l)},d)}
+
+/* Countdown aufbauen und aktualisieren */
+const XS={xpsp:[[90,26,154],[164,67,232]],xpsb:[[15,76,168],[61,157,255]]};
+function barHtml(pb){
+ const xp=/^xp/.test(pb),z=XS[pb];let cells='<i></i>';
+ if(xp)cells=Array.from({length:20},(_,i)=>'<b><u'+(z?` style="background-color:rgb(${z[0].map((v,k)=>Math.round(v+(z[1][k]-v)*i/19))})"`:'')+'></u></b>').join('');
+ return `<div class="bar ${esc(pb)}${xp?' xp':''}${/^xps/.test(pb)?' xps':''}">${cells}</div>`;
+}
+function build(el,c){
+ const L=String(c.lt).split(',').map(s=>s.trim()),ix=c.sd?[0,1,2,3]:[1,2,3],st=el.style;
+ st.setProperty('--ff',"'"+String(c.f).replace(/['"\\;]/g,'')+"'");
+ st.setProperty('--fs',+c.fs);st.setProperty('--dc',c.dc);st.setProperty('--lc',c.lc);
+ st.setProperty('--ls',c.ls/100);st.setProperty('--is',(+c.is)+'px');
+ st.setProperty('--ph',+c.ph);st.setProperty('--fb',Math.max(3,Math.round(c.ph*.11))+'px');st.setProperty('--bc',c.bc);
+ st.setProperty('--sh',c.sh?`${+c.shd}px ${+c.shd}px ${+c.shb}px ${c.shc}`:'0 0 0 transparent');
+ el.innerHTML=(c.img&&c.is>0?`<img src="${esc(c.img)}" alt="">`:'')+'<div class="m"><div class="w">'+
+  ix.map((i,k)=>(k?'<div class="s">:</div>':'')+`<div class="g"><div class="n">00</div>${c.sl?`<div class="l">${esc(L[i]||'')}</div>`:''}</div>`).join('')+
+  '</div>'+(c.pb?barHtml(c.pb):'')+`</div><div class="e n" style="display:none">${esc(c.end)}</div>`;
+ loadFont(c.f,view?0:500);
+}
+function tick(el,c){
+ const ms=c.t-(Date.now()+(c.sync?off:0)),s=ms>0?Math.ceil(ms/1000):0;
+ const v=c.sd?[s/86400,s%86400/3600,s%3600/60,s%60]:[s/3600,s%3600/60,s%60],n=el.querySelectorAll('.g .n');
+ v.forEach((x,i)=>{const t=String(Math.floor(x)).padStart(2,'0');if(n[i]&&n[i].textContent!==t)n[i].textContent=t});
+ const dn=ms<=0&&c.end;
+ const b=el.querySelector('.bar');
+ if(b){const tot=c.t-c.st,p=el.id==='pv'?ov:(tot>0?Math.min(1,Math.max(0,1-ms/tot)):(ms<=0?1:0));
+  if(b.classList.contains('xp')){
+   const cs=getComputedStyle(b),g=parseFloat(cs.columnGap)||0,e=(parseFloat(cs.paddingLeft)||0)+(parseFloat(cs.borderLeftWidth)||0),
+    cw=Math.round((el.querySelector('.w').offsetWidth-2*e-19*g)/20);
+   if(cw>0&&b._cw!==cw){b._cw=cw;b.style.gridTemplateColumns=`repeat(20,${cw}px)`;b.style.width=(20*cw+19*g+2*e)+'px'}
+   b.querySelectorAll('u').forEach((u,i)=>u.style.width=Math.min(1,Math.max(0,p*20-i))*100+'%');
+  }else{const f=b.firstChild,iw=b.clientWidth-4;
+   f.style.width=c.pb==='retro'?(p>=1?iw:Math.floor(iw*p/12)*12)+'px':p*100+'%'}}
+ el.querySelector('.m').style.display=dn?'none':'';
+ el.querySelector('.e').style.display=dn?'':'none';
+}
+
+if(view){
+ /* Anzeige-Modus (OBS) */
+ document.documentElement.className='view';$('#app').remove();
+ let c=D;try{c=Object.assign({},D,dec(m[1]))}catch(e){}
+ const el=document.createElement('div');el.className='cd';document.body.append(el);
+ build(el,c);tick(el,c);
+ if(c.sync){sync();setInterval(sync,6e5)}
+ setInterval(()=>tick(el,c),100);
+}else{
+ /* Generator-Modus */
+ let S=Object.assign({},D);
+ const pv=$('#pv'),out=$('#out'),p=n=>String(n).padStart(2,'0');
+ const loc=t=>{const d=new Date(t);return`${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`};
+ const FL='Cinzel|Cinzel Decorative|Orbitron|Audiowide|Bebas Neue|Oswald|Roboto|Roboto Mono|Roboto Slab|Open Sans|Montserrat|Poppins|Lato|Inter|Raleway|Playfair Display|Merriweather|Lora|Cormorant Garamond|EB Garamond|Libre Baskerville|Abril Fatface|Bungee|Press Start 2P|VT323|Share Tech Mono|Rajdhani|Exo 2|Teko|Russo One|Black Ops One|Righteous|Pacifico|Lobster|Dancing Script|Great Vibes|Satisfy|Caveat|Permanent Marker|Creepster|Eater|Nosifer|Metal Mania|MedievalSharp|Uncial Antiqua|Almendra|Pirata One|UnifrakturCook|Fredericka the Great|Special Elite|Michroma|Monoton|Faster One|Cinzel|Marcellus|Philosopher|Spectral|Bitter|Anton|Fjalla One|Archivo Black|Alfa Slab One|Squada One|Quantico|Aldrich|Iceland|Major Mono Display|Silkscreen|Rubik Glitch|Texturina|Grenze Gotisch|New Rocker|Jacquard 24'.split('|');
+ const fonts=a=>{$('#fl').innerHTML=[...new Set(a)].sort().map(f=>`<option value="${esc(f)}">`).join('')};
+ fonts(FL);
+ fetch('https://fonts.google.com/metadata/fonts').then(r=>r.text()).then(t=>fonts(FL.concat(JSON.parse(t.slice(t.indexOf('{'))).familyMetadataList.map(x=>x.family)))).catch(()=>{});
+
+ function fill(){
+  $$('[data-k]').forEach(i=>{const k=i.dataset.k,v=S[k];
+   if(i.type==='checkbox')i.checked=!!v;else i.value=(k==='t'||k==='st')?loc(v):v;
+   const o=i.closest('label')?.querySelector('.v');if(o)o.textContent=v});
+  $('#iu').value=/^data:/.test(S.img)?'':S.img;
+ }
+ function upd(){
+  build(pv,S);tick(pv,S);
+  const u=location.href.split('#')[0]+'#c='+enc(S);
+  out.value=u;$('#op').href=u;$('#len').textContent=u.length+' Zeichen';
+ }
+ $$('[data-k]').forEach(i=>i.addEventListener('input',()=>{
+  const k=i.dataset.k;
+  S[k]=i.type==='checkbox'?+i.checked:(k==='t'||k==='st')?(new Date(i.value).getTime()||S[k]):(i.type==='range'?+i.value:i.value);
+  const o=i.closest('label')?.querySelector('.v');if(o)o.textContent=S[k];
+  upd();
+ }));
+ $('#iu').oninput=e=>{S.img=e.target.value.trim();upd()};
+ $('#ir').onclick=()=>{S.img='';$('#iu').value='';$('#if').value='';upd()};
+ $('#if').onchange=e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{const im=new Image();
+   im.onload=()=>{
+    const W=im.naturalWidth||256,H=im.naturalHeight||256,k=Math.min(1,256/Math.max(W,H)),c=document.createElement('canvas');
+    c.width=Math.round(W*k);c.height=Math.round(H*k);
+    c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+    S.img=c.toDataURL('image/webp',.85);$('#iu').value='';upd();
+   };
+   im.src=r.result};
+  r.readAsDataURL(f);
+ };
+ $('#pbc').oninput=e=>$('#pvb').style.background=e.target.value;
+ $('#cp').onclick=async()=>{
+  try{await navigator.clipboard.writeText(out.value)}catch(e){out.select();document.execCommand('copy')}
+  $('#cp').textContent='Kopiert';setTimeout(()=>$('#cp').textContent='Link kopieren',1500);
+ };
+ $('#imp').oninput=e=>{
+  const x=e.target.value.match(/c=([\w-]+)/);if(!x)return;
+  try{S=Object.assign({},D,dec(x[1]));fill();upd()}catch(err){}
+ };
+ $('#sn').onclick=()=>{S.st=Date.now();fill();upd()};
+ $('#pt').oninput=e=>{ov=+e.target.value/100;e.target.closest('label').querySelector('.v').textContent=e.target.value+' %'};
+ fill();upd();sync();setInterval(sync,6e5);
+ setInterval(()=>tick(pv,S),100);
+ setInterval(()=>{
+  const r=pv.getBoundingClientRect();$('#sz').textContent=Math.ceil(r.width)+' × '+Math.ceil(r.height)+' px';
+  $('#syn').textContent=S.sync?info:'Atomzeit-Abgleich aus, es läuft die PC-Uhr';
+ },1000);
+ setTimeout(()=>{const r=pv.getBoundingClientRect();$('#sz').textContent=Math.ceil(r.width)+' × '+Math.ceil(r.height)+' px'},50);
+}
+})();
+</script>
+</body>
+</html>
