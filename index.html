@@ -36,9 +36,9 @@ b{color:var(--tx)}
 .cd img{height:var(--is);width:auto;align-self:center;filter:drop-shadow(var(--sh))}
 .w{display:flex;align-self:flex-start;align-items:flex-start;gap:calc(var(--fs)*.25px)}
 .g{display:flex;flex-direction:column;align-items:center}
-.n,.s{font-size:calc(var(--fs)*1px);line-height:1.1}
+.n,.s{font-size:calc(var(--fs)*1px);line-height:1.1;font-weight:var(--wn)}
 .n{font-variant-numeric:tabular-nums;min-width:2ch;text-align:center}
-.l{font-size:calc(var(--fs)*var(--ls)*1px);color:var(--lc);margin-top:calc(var(--fs)*.1px);letter-spacing:.06em}
+.l{font-weight:var(--wl);font-size:calc(var(--fs)*var(--ls)*1px);color:var(--lc);margin-top:calc(var(--fs)*.1px);letter-spacing:.06em}
 select{width:100%;margin-top:4px;padding:7px 9px;background:#0b141a;color:var(--tx);border:1px solid var(--bd);border-radius:6px;font:inherit}
 .m{display:flex;flex-direction:column;align-items:stretch}
 .bar{position:relative;width:100%;height:calc(var(--ph)*1px);margin-top:calc(var(--fs)*.2px);filter:drop-shadow(var(--sh))}
@@ -95,6 +95,11 @@ html.view,html.view body{background:transparent;overflow:hidden;padding:0;margin
    <label>Zahlenfarbe<input type="color" data-k="dc"></label>
    <label>Beschriftungsfarbe<input type="color" data-k="lc"></label>
   </div>
+  <div class="r2">
+   <label>Stärke der Zahlen<select data-k="wn"><option value="100">Thin 100</option><option value="200">Extra Light 200</option><option value="300">Light 300</option><option value="400">Regular 400</option><option value="500">Medium 500</option><option value="600">Semi Bold 600</option><option value="700">Bold 700</option><option value="800">Extra Bold 800</option><option value="900">Black 900</option></select></label>
+   <label>Stärke der Beschriftung<select data-k="wl"><option value="100">Thin 100</option><option value="200">Extra Light 200</option><option value="300">Light 300</option><option value="400">Regular 400</option><option value="500">Medium 500</option><option value="600">Semi Bold 600</option><option value="700">Bold 700</option><option value="800">Extra Bold 800</option><option value="900">Black 900</option></select></label>
+  </div>
+  <p class="mu">Nicht jede Schrift hat alle Stufen. Fehlt eine, nimmt der Browser die nächstliegende.</p>
  </fieldset>
  <fieldset><legend>Beschriftung</legend>
   <label class="ck"><input type="checkbox" data-k="sl"> Beschriftung unter den Zahlen</label>
@@ -115,9 +120,8 @@ html.view,html.view body{background:transparent;overflow:hidden;padding:0;margin
   </select></label>
   <label>Höhe<span class="v"></span><input type="range" min="8" max="60" data-k="ph"></label>
   <label>Farbe (nur klassischer Ladebalken)<input type="color" data-k="bc"></label>
-  <label>Start der Leiste (leer bei 0 %, voll zum Zielzeitpunkt)<input type="datetime-local" step="1" data-k="st"></label>
-  <button class="sec" id="sn">Start auf jetzt setzen</button>
-  <label>Füllstand in der Vorschau<span class="v">60 %</span><input type="range" min="0" max="100" value="60" id="pt"></label>
+  <p class="mu">Die Leiste zeigt die Restzeit im Verhältnis zu 90 Tagen: 12 Tage vor dem Ziel ist sie zu etwa 87 % voll. Liegt das Ziel mehr als 90 Tage entfernt, gilt 365 Tage als Maßstab.</p>
+    <label>Füllstand in der Vorschau<span class="v">60 %</span><input type="range" min="0" max="100" value="60" id="pt"></label>
   <p class="mu">Der Füllstand gilt nur für die Vorschau hier. Im Stream füllt sich die Leiste nach der echten Zeit.</p>
  </fieldset>
  <fieldset><legend>Schlagschatten</legend>
@@ -146,7 +150,7 @@ html.view,html.view body{background:transparent;overflow:hidden;padding:0;margin
 <script>
 (()=>{
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const D={t:Date.now()+7*864e5,img:'',is:110,f:'Cinzel',fs:72,dc:'#ebe0c4',lc:'#d9cba3',sl:1,lt:'Tage,Stunden,Minuten,Sekunden',ls:22,sh:1,shc:'#000000',shd:3,shb:6,sd:1,end:'',sync:1,pb:'',ph:28,bc:'#d2ac56',st:Date.now()};
+const D={t:Date.now()+7*864e5,img:'',is:110,f:'Cinzel',fs:72,dc:'#ebe0c4',lc:'#d9cba3',sl:1,lt:'Tage,Stunden,Minuten,Sekunden',ls:22,sh:1,shc:'#000000',shd:3,shb:6,sd:1,end:'',sync:1,pb:'',ph:28,bc:'#d2ac56',wn:400,wl:400};
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const enc=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
 const dec=s=>JSON.parse(decodeURIComponent(escape(atob(s.replace(/-/g,'+').replace(/_/g,'/')))));
@@ -172,8 +176,10 @@ async function sync(){
 
 /* Schriften */
 const LF=new Set();let ft;
-function loadFont(f,d){clearTimeout(ft);ft=setTimeout(()=>{const n=String(f||'').trim();if(!n||LF.has(n))return;LF.add(n);
- const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family='+encodeURIComponent(n).replace(/%20/g,'+')+'&display=swap';document.head.append(l)},d)}
+function loadFont(f,d,ws){clearTimeout(ft);ft=setTimeout(()=>{const n=String(f||'').trim();if(!n)return;
+ const q=encodeURIComponent(n).replace(/%20/g,'+');
+ for(const w of ['',...new Set(ws.map(Number).filter(x=>x&&x!==400))]){const k=n+'@'+w;if(LF.has(k))continue;LF.add(k);
+  const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family='+q+(w?':wght@'+w:'')+'&display=swap';document.head.append(l)}},d)}
 
 /* Countdown aufbauen und aktualisieren */
 const XS={xpsp:[[90,26,154],[164,67,232]],xpsb:[[15,76,168],[61,157,255]]};
@@ -187,12 +193,12 @@ function build(el,c){
  st.setProperty('--ff',"'"+String(c.f).replace(/['"\\;]/g,'')+"'");
  st.setProperty('--fs',+c.fs);st.setProperty('--dc',c.dc);st.setProperty('--lc',c.lc);
  st.setProperty('--ls',c.ls/100);st.setProperty('--is',(+c.is)+'px');
- st.setProperty('--ph',+c.ph);st.setProperty('--fb',Math.max(3,Math.round(c.ph*.11))+'px');st.setProperty('--bc',c.bc);
+ st.setProperty('--ph',+c.ph);st.setProperty('--wn',+c.wn||400);st.setProperty('--wl',+c.wl||400);st.setProperty('--fb',Math.max(3,Math.round(c.ph*.11))+'px');st.setProperty('--bc',c.bc);
  st.setProperty('--sh',c.sh?`${+c.shd}px ${+c.shd}px ${+c.shb}px ${c.shc}`:'0 0 0 transparent');
  el.innerHTML=(c.img&&c.is>0?`<img src="${esc(c.img)}" alt="">`:'')+'<div class="m"><div class="w">'+
   ix.map((i,k)=>(k?'<div class="s">:</div>':'')+`<div class="g"><div class="n">00</div>${c.sl?`<div class="l">${esc(L[i]||'')}</div>`:''}</div>`).join('')+
   '</div>'+(c.pb?barHtml(c.pb):'')+`</div><div class="e n" style="display:none">${esc(c.end)}</div>`;
- loadFont(c.f,view?0:500);
+ loadFont(c.f,view?0:500,[c.wn,c.wl]);
 }
 function tick(el,c){
  const ms=c.t-(Date.now()+(c.sync?off:0)),s=ms>0?Math.ceil(ms/1000):0;
@@ -200,7 +206,7 @@ function tick(el,c){
  v.forEach((x,i)=>{const t=String(Math.floor(x)).padStart(2,'0');if(n[i]&&n[i].textContent!==t)n[i].textContent=t});
  const dn=ms<=0&&c.end;
  const b=el.querySelector('.bar');
- if(b){const tot=c.t-c.st,p=el.id==='pv'?ov:(tot>0?Math.min(1,Math.max(0,1-ms/tot)):(ms<=0?1:0));
+ if(b){const win=(ms>7776e6?365:90)*864e5,p=el.id==='pv'?ov:Math.min(1,Math.max(0,1-ms/win));
   if(b.classList.contains('xp')){
    const cs=getComputedStyle(b),g=parseFloat(cs.columnGap)||0,e=(parseFloat(cs.paddingLeft)||0)+(parseFloat(cs.borderLeftWidth)||0),
     cw=Math.round((el.querySelector('.w').offsetWidth-2*e-19*g)/20);
@@ -232,7 +238,7 @@ if(view){
 
  function fill(){
   $$('[data-k]').forEach(i=>{const k=i.dataset.k,v=S[k];
-   if(i.type==='checkbox')i.checked=!!v;else i.value=(k==='t'||k==='st')?loc(v):v;
+   if(i.type==='checkbox')i.checked=!!v;else i.value=k==='t'?loc(v):v;
    const o=i.closest('label')?.querySelector('.v');if(o)o.textContent=v});
   $('#iu').value=/^data:/.test(S.img)?'':S.img;
  }
@@ -243,7 +249,7 @@ if(view){
  }
  $$('[data-k]').forEach(i=>i.addEventListener('input',()=>{
   const k=i.dataset.k;
-  S[k]=i.type==='checkbox'?+i.checked:(k==='t'||k==='st')?(new Date(i.value).getTime()||S[k]):(i.type==='range'?+i.value:i.value);
+  S[k]=i.type==='checkbox'?+i.checked:k==='t'?(new Date(i.value).getTime()||S.t):(i.type==='range'?+i.value:i.value);
   const o=i.closest('label')?.querySelector('.v');if(o)o.textContent=S[k];
   upd();
  }));
@@ -271,7 +277,6 @@ if(view){
   const x=e.target.value.match(/c=([\w-]+)/);if(!x)return;
   try{S=Object.assign({},D,dec(x[1]));fill();upd()}catch(err){}
  };
- $('#sn').onclick=()=>{S.st=Date.now();fill();upd()};
  $('#pt').oninput=e=>{ov=+e.target.value/100;e.target.closest('label').querySelector('.v').textContent=e.target.value+' %'};
  fill();upd();sync();setInterval(sync,6e5);
  setInterval(()=>tick(pv,S),100);
