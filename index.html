@@ -120,7 +120,7 @@ html.view,html.view body{background:transparent;overflow:hidden;padding:0;margin
   </select></label>
   <label>Höhe<span class="v"></span><input type="range" min="8" max="60" data-k="ph"></label>
   <label>Farbe (nur klassischer Ladebalken)<input type="color" data-k="bc"></label>
-  <p class="mu">Die Leiste zeigt die Restzeit im Verhältnis zu 90 Tagen: 12 Tage vor dem Ziel ist sie zu etwa 87 % voll. Liegt das Ziel mehr als 90 Tage entfernt, gilt 365 Tage als Maßstab.</p>
+  <p class="mu">Die letzten 90 Tage füllen die Leiste von 25 % bis 100 %: 12 Tage vor dem Ziel ist sie zu 90 % voll. Davor füllt sie sich langsam von 0 % (365 Tage vor dem Ziel) bis 25 % (90 Tage vor dem Ziel). Sie springt nie zurück.</p>
     <label>Füllstand in der Vorschau<span class="v">60 %</span><input type="range" min="0" max="100" value="60" id="pt"></label>
   <p class="mu">Der Füllstand gilt nur für die Vorschau hier. Im Stream füllt sich die Leiste nach der echten Zeit.</p>
  </fieldset>
@@ -206,7 +206,7 @@ function tick(el,c){
  v.forEach((x,i)=>{const t=String(Math.floor(x)).padStart(2,'0');if(n[i]&&n[i].textContent!==t)n[i].textContent=t});
  const dn=ms<=0&&c.end;
  const b=el.querySelector('.bar');
- if(b){const win=(ms>7776e6?365:90)*864e5,p=el.id==='pv'?ov:Math.min(1,Math.max(0,1-ms/win));
+ if(b){const d=ms/864e5,p=el.id==='pv'?ov:d<=0?1:d<=90?.25+.75*(1-d/90):d<365?.25*(365-d)/275:0;
   if(b.classList.contains('xp')){
    const cs=getComputedStyle(b),g=parseFloat(cs.columnGap)||0,e=(parseFloat(cs.paddingLeft)||0)+(parseFloat(cs.borderLeftWidth)||0),
     cw=Math.round((el.querySelector('.w').offsetWidth-2*e-19*g)/20);
